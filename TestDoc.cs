@@ -13,3 +13,19 @@ class Student
 			}
 		}
 	}
+
+class Instructor
+	{
+		private string firstName;
+		private string lastName;
+		private string office;
+		
+		public string FirstName {
+			get {
+				return firstName;
+				}
+			set {
+				firstName = value;
+			}
+		}
+	}
