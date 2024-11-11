@@ -1,0 +1,43 @@
+CREATE TABLE Users (
+    [userID]      INT           NOT NULL PRIMARY KEY,
+    [role]        NVARCHAR (10) NOT NULL,
+    [firstName]   NVARCHAR (50) NOT NULL,
+    [LastName]    NVARCHAR (50) NOT NULL,
+    [email]       NVARCHAR (50) NOT NULL,
+    [password]    NVARCHAR (50) NOT NULL
+);
+
+CREATE TABLE Appointment (
+    [appointmentID]        INT            NOT NULL PRIMARY KEY,
+	[userid]			   INT			  NOT NULL,
+    [appointmentDateStart] DATETIME       NOT NULL,
+    [appointmentDateEnd]   DATETIME       NOT NULL,
+    [room]                 NVARCHAR (50)  NULL,
+    [detail]               NVARCHAR (MAX) NULL,
+    [status]               NVARCHAR (10)  NOT NULL,
+    [cancellationDate]     DATE           NULL,
+	CONSTRAINT FK_App_UserID FOREIGN KEY (userID)
+	REFERENCES Users(userID)
+);
+
+CREATE TABLE Participant (
+    [participantID]         INT            NOT NULL PRIMARY KEY,
+	[userID]				INT			   NOT NULL,
+    [gender]			    NVARCHAR (10)  NOT NULL,
+    [dateOfBirth]		    DATE           NOT NULL,
+    [weight]                DECIMAL (3, 2) NULL,
+    [height]                DECIMAL (3, 2) NULL,
+    [emergencyContactName]  NVARCHAR (50)  NULL,
+    [emergencyContactPhone] INT            NULL,
+    [eligibilityStatus]     NVARCHAR (50)  NULL,
+	CONSTRAINT FK_Participant_UserID FOREIGN KEY (userID)
+	REFERENCES Users(userID)
+);
+
+CREATE TABLE Appointment_Management_System (
+    [sysID]					INT           NOT NULL PRIMARY KEY,
+	[appointmentID]			INT			  NOT NULL,
+    [dateDiff]				DATETIME      NOT NULL,
+	CONSTRAINT FK_sys_appointmentID FOREIGN KEY (appointmentID)
+	REFERENCES Appointment(appointmentID)
+);
