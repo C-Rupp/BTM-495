@@ -1,10 +1,10 @@
 CREATE TABLE Users (
     [userID]      INT           NOT NULL PRIMARY KEY,
-    [role]        NVARCHAR (10) NOT NULL,
-    [firstName]   NVARCHAR (50) NOT NULL,
-    [LastName]    NVARCHAR (50) NOT NULL,
-    [email]       NVARCHAR (50) NOT NULL,
-    [password]    NVARCHAR (50) NOT NULL
+    [role]        VARCHAR (50) NOT NULL,
+    [firstName]   VARCHAR (50) NOT NULL,
+    [LastName]    VARCHAR (50) NOT NULL,
+    [email]       VARCHAR (50) NOT NULL,
+    [password]    VARCHAR (50) NOT NULL
 );
 
 CREATE TABLE Appointment (
@@ -12,9 +12,9 @@ CREATE TABLE Appointment (
 	[userid]			   INT			  NOT NULL,
     [appointmentDateStart] DATETIME       NOT NULL,
     [appointmentDateEnd]   DATETIME       NOT NULL,
-    [room]                 NVARCHAR (50)  NULL,
-    [detail]               NVARCHAR (MAX) NULL,
-    [status]               NVARCHAR (10)  NOT NULL,
+    [room]                 VARCHAR (50)  NULL,
+    [detail]               VARCHAR (MAX) NULL,
+    [status]               VARCHAR (10)  NOT NULL,
     [cancellationDate]     DATE           NULL,
 	CONSTRAINT FK_App_UserID FOREIGN KEY (userID)
 	REFERENCES Users(userID)
@@ -27,7 +27,7 @@ CREATE TABLE Participant (
     [dateOfBirth]		    DATE           NOT NULL,
     [weight]                DECIMAL (3, 2) NULL,
     [height]                DECIMAL (3, 2) NULL,
-    [emergencyContactName]  NVARCHAR (50)  NULL,
+    [emergencyContactName]  VARCHAR (50)  NULL,
     [emergencyContactPhone] INT            NULL,
     [eligibilityStatus]     NVARCHAR (50)  NULL,
 	CONSTRAINT FK_Participant_UserID FOREIGN KEY (userID)
