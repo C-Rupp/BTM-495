@@ -1,0 +1,46 @@
+CREATE TABLE Users (
+    [userID]      INT           NOT NULL PRIMARY KEY,
+    [role]        VARCHAR (20)  NOT NULL,
+    [firstName]   VARCHAR (50)  NOT NULL,
+    [LastName]    VARCHAR (50)  NOT NULL,
+    [email]       VARCHAR (75)  NOT NULL,
+    [password]    VARCHAR (50)  NOT NULL
+);
+
+CREATE TABLE Appointment (
+    [appointmentID]        INT            NOT NULL PRIMARY KEY,
+	[userid]			   INT			  NOT NULL,
+    [appointmentDateStart] DATETIME       NOT NULL,
+    [appointmentDateEnd]   DATETIME       NOT NULL,
+    [room]                 NVARCHAR (50)  NULL,
+    [detail]               VARCHAR (MAX)  NULL,
+    [status]               VARCHAR (15)   NOT NULL,
+    [cancellationDate]     DATE           NULL,
+	CONSTRAINT FK_App_UserID FOREIGN KEY (userID)
+	REFERENCES Users(userID)
+);
+
+CREATE TABLE Participant (
+    [participantID]         INT            NOT NULL PRIMARY KEY,
+	[userID]				INT			   NOT NULL,
+    [gender]			    VARCHAR (10)   NOT NULL,
+    [dateOfBirth]		    DATE           NOT NULL,
+    [weight]                DECIMAL (3, 2) NULL,
+    [height]                DECIMAL (3, 2) NULL,
+    [emergencyContactName]  VARCHAR (50)   NULL,
+    [emergencyContactPhone] INT            NULL,
+    [eligibilityStatus]     BIT			   NULL,
+	CONSTRAINT FK_Participant_UserID FOREIGN KEY (userID)
+	REFERENCES Users(userID)
+);
+
+CREATE TABLE Appointment_Management_System (
+    [sysID]					INT           NOT NULL PRIMARY KEY,
+	[appointmentID]			INT			  NOT NULL,
+    [dateDiff]				DATETIME      NOT NULL,
+	CONSTRAINT FK_sys_appointmentID FOREIGN KEY (appointmentID)
+	REFERENCES Appointment(appointmentID)
+);
+
+INSERT INTO Users (userID, role, firstName, lastName, email, password)
+VALUES (1, 'participant', 'Marie', 'Poppins', 'mariepop@gmail.com', '123')
