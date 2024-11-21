@@ -110,3 +110,4 @@ class Program
         // Display the result
         Console.WriteLine(result);
     }
+}
