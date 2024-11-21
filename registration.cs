@@ -46,11 +46,7 @@ public class RegistrationSystem
             }
         }
 
-        // Check if array is full
-        if (currentIndex >= participants.Length)
-        {
-            return "Error: Registration system is full. Cannot add more participants.";
-        }
+    
 
         // Create a new participant profile and add to the array
         ParticipantRegistration participant = new ParticipantRegistration(userID, firstName, lastName, gender, dateOfBirth, email, password, weight, height, emergencyContactNumber, emergencyContactPerson);
@@ -68,7 +64,7 @@ class Program
         RegistrationSystem registrationSystem = new RegistrationSystem();
 
         Console.WriteLine("Welcome to the Participant Registration System!");
-        Console.WriteLine("Please enter your details below.");
+        Console.WriteLine("Please enter your details below to create your profile.");
 
         // Collect inputs
         Console.Write("Enter User ID: ");
